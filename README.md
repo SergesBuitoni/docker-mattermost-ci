@@ -60,7 +60,6 @@ NPM Admin : http://localhost:81
 
 ### Nginx Proxy Manager – Interface Admin
 ![NPM Interface](screenshots/npm-interface.png)
-
 ##Compétences développées
 
 Conteneurisation
