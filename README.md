@@ -78,3 +78,4 @@ Documentation technique
 
 Joseph Mboui
 Junior DevOps / Cloud / Cybersécurité
+<!-- CI/CD test trigger -->
