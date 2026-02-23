@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: mm-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: mmuser
+      POSTGRES_PASSWORD: mmpassword
+      POSTGRES_DB: mattermost
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mattermost:
+    image: mattermost/mattermost-team-edition:latest
+    container_name: mm-app
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      MM_SQLSETTINGS_DRIVERNAME: postgres
+      MM_SQLSETTINGS_DATASOURCE: postgres://mmuser:mmpassword@postgres:5432/mattermost?sslmode=disable
+    expose:
+      - "8065"
+    volumes:
+      - mattermost_data:/mattermost/data
+
+  npm:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: npm
+    restart: always
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+
+volumes:
+  postgres_data:
+  mattermost_data:
+  npm_data:
+  npm_letsencrypt:
+
