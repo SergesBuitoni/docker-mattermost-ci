@@ -50,14 +50,18 @@ Mattermost : http://mattermost.local
 
 NPM Admin : http://localhost:81
 
-📸 Captures d’écran
-Mattermost – Interface utilisateur
+## 📸 Captures d’écran
 
-Mattermost – Accès via Reverse Proxy
+### Mattermost – Interface utilisateur
+![Mattermost Dashboard](screenshots/mattermost-dashboard.png)
 
-Nginx Proxy Manager – Interface Admin
+### Mattermost – Accès via Reverse Proxy
+![Mattermost Proxy](screenshots/mattermost-proxy.png)
 
-📈 Compétences développées
+### Nginx Proxy Manager – Interface Admin
+![NPM Interface](screenshots/npm-interface.png)
+
+##Compétences développées
 
 Conteneurisation
 
