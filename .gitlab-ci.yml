@@ -1,0 +1,30 @@
+image: docker:24.0.5
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_TLS_CERTDIR: ""
+
+stages:
+  - test
+  - build
+  - deploy
+
+before_script:
+  - docker info
+
+test_compose:
+  stage: test
+  script:
+    - docker compose config
+
+build_images:
+  stage: build
+  script:
+    - docker compose build
+
+deploy_check:
+  stage: deploy
+  script:
+    - echo "Simulated deployment OK"
