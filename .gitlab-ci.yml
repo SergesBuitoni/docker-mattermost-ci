@@ -6,13 +6,22 @@ services:
 variables:
   DOCKER_TLS_CERTDIR: ""
 
+stages:
+  - build
+  - test
+
 before_script:
   - docker info
 
-stages:
-  - test
+build_app:
+  stage: build
+  script:
+    - docker compose build
 
-test_pipeline:
+test_app:
   stage: test
   script:
-    - echo "CI/CD is working"
+    - docker compose up -d
+    - sleep 20
+    - docker ps
+    - docker compose down
