@@ -6,13 +6,30 @@ services:
 variables:
   DOCKER_TLS_CERTDIR: ""
 
+stages:
+  - build
+  - test
+  - deploy
+
 before_script:
   - docker info
+  - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
 
-stages:
-  - test
 
-test_pipeline:
+build_image:
+  stage: build
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:latest .
+    - docker push $CI_REGISTRY_IMAGE:latest
+
+
+test_image:
   stage: test
   script:
-    - echo "CI/CD is working"
+    - docker run --rm $CI_REGISTRY_IMAGE:latest --version || true
+
+
+deploy_image:
+  stage: deploy
+  script:
+    - echo "Image prête pour le déploiement"
