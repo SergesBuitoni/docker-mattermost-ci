@@ -60,6 +60,11 @@ NPM Admin : http://localhost:81
 
 ### Nginx Proxy Manager – Interface Admin
 ![NPM Interface](screenshots/npm-interface.png)
+
+## 🚀 CI/CD Pipeline
+
+![Pipeline GitLab](screenshots/pipeline-success.png)
+
 ##Compétences développées
 
 Conteneurisation
